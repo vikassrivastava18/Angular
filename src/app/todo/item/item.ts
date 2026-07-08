@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 // import { CommonModule } from "@angular/common";
-import { Item } from "../item";
+import { Item } from "./item.interface";
 
 @Component({
-  selector: 'app-item',
+  selector: 'todo-item',
   standalone: true,
   imports: [],
   templateUrl: './item.html',
