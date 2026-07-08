@@ -5,7 +5,6 @@ import { Todo } from './todo/todo';
 import { authGuard } from './auth/auth-guard';
 
 export const routes: Routes = [
-
   {
     path: '',
     redirectTo: 'todos',

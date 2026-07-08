@@ -1,9 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [],
-  templateUrl: './login.html',
-  styleUrl: './login.css',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './login.html'
 })
-export class Login {}
+export class Login {
+
+  username = '';
+  password = '';
+
+  auth = inject(AuthService);
+  router = inject(Router);
+
+  login() {
+
+    this.auth.login({
+      username: this.username,
+      password: this.password
+    }).subscribe({
+
+      next: () => {
+
+        this.router.navigate(['/todos']);
+
+      },
+
+      error: () => {
+
+        alert("Invalid credentials");
+
+      }
+
+    });
+
+  }
+
+}
