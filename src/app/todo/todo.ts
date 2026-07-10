@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Item } from "./item/item.interface";
 import { ItemComponent } from "./item/item";
+import { TodoService } from './todo.service';
+
 
 @Component({
   selector: 'app-todo',
@@ -8,17 +10,22 @@ import { ItemComponent } from "./item/item";
   templateUrl: './todo.html',
   styleUrl: './todo.css',
 })
-export class Todo {
-    componentTitle = "My To Do List";
 
+export class ToDo {
+  componentTitle = "My To Do List";
   filter: "all" | "active" | "done" = "all";
+  allItems: Item[] = [];
 
-  allItems = [
-    { description: "eat", done: true },
-    { description: "sleep", done: false },
-    { description: "play", done: false },
-    { description: "laugh", done: false },
-  ];
+  todoService = inject(TodoService)
+
+  ngOnInit() {
+    this.todoService.getTodos().subscribe({
+    next: todos => {
+      console.log("Todos: ", todos);
+      this.allItems = todos
+    }
+  });
+  }
 
   get items() {
     if (this.filter === "all") {
@@ -33,7 +40,8 @@ export class Todo {
     if (!description) return;
     this.allItems.unshift({
       description,
-      done: false
+      done: false,
+      id: 1
     });
   }
 

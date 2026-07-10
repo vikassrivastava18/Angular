@@ -27,15 +27,11 @@ export class Login {
     }).subscribe({
 
       next: () => {
-
         this.router.navigate(['/todos']);
-
       },
 
       error: () => {
-
         alert("Invalid credentials");
-
       }
 
     });

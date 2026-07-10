@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { Login } from './auth/login/login';
-import { Todo } from './todo/todo';
+import { ToDo } from './todo/todo';
 import { authGuard } from './auth/auth-guard';
 
 export const routes: Routes = [
@@ -18,7 +18,7 @@ export const routes: Routes = [
 
   {
     path: 'todos',
-    component: Todo,
+    component: ToDo,
     canActivate: [authGuard]
   },
 

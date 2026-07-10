@@ -2,12 +2,13 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
-export interface LoginRequest {
+
+interface LoginRequest {
     username: string;
     password: string;
 }
 
-export interface LoginResponse {
+interface LoginResponse {
     token: string;
 }
 
@@ -26,11 +27,6 @@ export class AuthService {
         return this.http.post<LoginResponse>(
             `${this.api}/login`,
             data,
-            {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
         ).pipe(
             tap(response => {
                 console.log(response);   // Check this
