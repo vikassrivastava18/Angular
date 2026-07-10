@@ -1,18 +1,22 @@
-<h2>Login</h2>
 
-<input
+<div class="main container p-4">
+    <h2>Login</h2>
+
+    <input
     [(ngModel)]="username"
-    placeholder="Username">
-
-<br><br>
-
-<input
+    placeholder="Username"
+    class="lg-text-input form-control">
+    <br>
+    <input
     type="password"
     [(ngModel)]="password"
-    placeholder="Password">
+    placeholder="Password"
+    class="lg-text-input form-control">
+    <br>
+    <button
+        class="btn "
+        (click)="login()">
+        Done
+      </button>
 
-<br><br>
-
-<button (click)="login()">
-    Login
-</button>
+</div>
