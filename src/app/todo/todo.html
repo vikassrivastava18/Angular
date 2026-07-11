@@ -5,13 +5,14 @@
   <input 
     #newItem
     placeholder="add an item"
-    (keyup.enter)="addItem(newItem.value); newItem.value=''"
+   newItem.value=""
     class="lg-text-input"
     id="addItemInput" />
-    <button class="btn-primary" (click)="addItem(newItem.value); newItem.value=''">
+    <button class="btn-primary" newItem.value=''>
       Add Item
     </button>
     <!-- Buttons that show all, still to do, or done items on click -->
+     
     <div class="btn-wrapper">
       <button
         class="btn btn-menu"
@@ -36,14 +37,14 @@
     </div>
 
   <h2>
-  {{items.length}}
-  <span> @if (items.length === 1) { item } @else { items } </span>
+  {{todoService.todos().length}}
+  <span> @if (todoService.todos().length === 1) { item } @else { items } </span>
 </h2>
 
 <ul>
-  @for (item of items; track item.description) {
+  @for (item of todoService.todos(); track item.id) {
   <li>
-    <todo-item (remove)="remove(item)" [item]="item"></todo-item>
+    <todo-item [item]="item"></todo-item>
   </li>
   }
 </ul>

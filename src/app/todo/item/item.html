@@ -1,10 +1,10 @@
 <div class="item">
   <input
-    [id]="item.description"
+    [id]="item.todo"
     type="checkbox"
     (change)="item.done = !item.done"
     [checked]="item.done" />
-  <label [for]="item.description">{{item.description}}</label>
+  <label [for]="item.todo">{{item.todo}}</label>
 
   @if (!editable) {
   <div class="btn-wrapper">
@@ -19,7 +19,7 @@
     <input
       class="sm-text-input"
       placeholder="edit item"
-      [value]="item.description"
+      [value]="item.todo"
       #editedItem
       (keyup.enter)="saveItem(editedItem.value)" />
 

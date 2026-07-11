@@ -1,5 +1,5 @@
 export interface Item {
     id: number;
-    description: string;
+    todo: string;
     done: boolean;
 }

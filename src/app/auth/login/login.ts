@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -11,8 +10,8 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class Login {
 
+export class Login {
   username = '';
   password = '';
 
@@ -20,12 +19,10 @@ export class Login {
   router = inject(Router);
 
   login() {
-
     this.auth.login({
       username: this.username,
       password: this.password
     }).subscribe({
-
       next: () => {
         this.router.navigate(['/todos']);
       },

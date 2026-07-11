@@ -20,6 +20,6 @@ export class ItemComponent {
     if (!description) return;
 
     this.editable = false;
-    this.item.description = description;
+    this.item.todo = description;
   }
 }
