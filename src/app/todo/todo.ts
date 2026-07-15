@@ -37,7 +37,6 @@ export class ToDo {
   getAllTodos () {
     this.todoService.getTodos().subscribe((todos) => {
       this.allTodos.set(todos);
-      console.log("Todos: ", todos);      
     });
   }
 
@@ -57,5 +56,11 @@ export class ToDo {
 
   removeTodo(id: number) {
     this.allTodos.update((todos) => todos.filter((todo) => todo.id !== id));
+  }
+
+  updateTodoItem(updatedTodo: Item) {
+    this.allTodos.update((todos) =>
+      todos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo))
+    );
   }
 }

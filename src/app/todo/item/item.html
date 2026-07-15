@@ -7,15 +7,15 @@
   />
   <label [for]="item.todo">{{item.todo}}</label>
 
-  @if (!editable) {
+  @if (!editable()) {
   <div class="btn-wrapper">
-    <button class="btn" (click)="editable = true">Edit</button>
+    <button class="btn" (click)="startEditing()">Edit</button>
     <button class="btn btn-warn" (click)="deleteItem(item.id)">Delete</button>
   </div>
   }
 
   <!-- This section shows only if user clicks Edit button -->
-  @if (editable) {
+  @if (editable()) {
   <div>
     <input
       class="sm-text-input"

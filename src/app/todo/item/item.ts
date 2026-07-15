@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, inject } from "@angular/core";
+import { Component, Input, Output, EventEmitter, inject, signal } from "@angular/core";
 // import { CommonModule } from "@angular/common";
 import { Item } from "./item.interface";
 import { TodoService } from "../todo.service";
@@ -12,15 +12,20 @@ import { TodoService } from "../todo.service";
 })
 
 export class ItemComponent {
-  editable = false;
+  editable = signal(false);
 
   todoService = inject(TodoService)
 
   @Input() item!: Item;
   @Output() remove = new EventEmitter<Item>();
+  @Output() statusChanged = new EventEmitter<Item>();
+
+  startEditing() {
+    this.editable.set(true);
+  }
 
   finishEditing() {
-    this.editable = false;
+    this.editable.set(false);
   }
 
   toggleItemStatus(event: Event) {
@@ -36,6 +41,7 @@ export class ItemComponent {
     this.todoService.updateTodo(description, id, status).subscribe((todo) => {
       this.item.todo = todo.todo;
       this.item.status = todo.status;
+      this.statusChanged.emit(this.item);
       this.finishEditing();
     });
   }

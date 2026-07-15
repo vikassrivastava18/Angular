@@ -45,7 +45,11 @@
 <ul>
   @for (item of filteredTodos(); track item.id) {
   <li>
-    <todo-item [item]="item" (remove)="removeTodo(item.id)"></todo-item>
+    <todo-item
+      [item]="item"
+      (remove)="removeTodo(item.id)"
+      (statusChanged)="updateTodoItem($event)"
+    ></todo-item>
   </li>
   }
 </ul>
