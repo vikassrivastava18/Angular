@@ -24,19 +24,34 @@ export class ToDo {
 
     switch (currentFilter) {
       case 'active':
-        return todos.filter((todo) => !todo.done);
+        return todos.filter((todo) => todo.status == "to");
 
       case 'done':
-        return todos.filter((todo) => todo.done);
+        return todos.filter((todo) => todo.status == "co");
 
       default:
         return todos;
     }
   });
 
-  ngOnInit() {
+  getAllTodos () {
     this.todoService.getTodos().subscribe((todos) => {
       this.allTodos.set(todos);
+      console.log("Todos: ", todos);      
+    });
+  }
+
+  ngOnInit() {
+    this.getAllTodos()
+  }
+
+  addTodo(todo: string) {
+    if (!todo.trim()) {
+      return;
+    }
+
+    this.todoService.addTodo(todo).subscribe((newTodo) => {
+      this.allTodos.update((todos) => [newTodo, ...todos]);
     });
   }
 }

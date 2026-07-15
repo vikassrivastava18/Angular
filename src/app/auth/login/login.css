@@ -1,7 +1,8 @@
 .main {
-    max-width: 50vw;
+    max-width: 40vw;
     display: block;
     margin: 0 auto;
     margin-top: 50px;
     border: 1px solid;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 2.5rem 5rem 0 rgb(0 0 0 / 10%);
 }

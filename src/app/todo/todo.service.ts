@@ -15,4 +15,11 @@ export class TodoService {
         return this.http.get<Item[]>(this.api);
     }
 
+    addTodo(todo: string) {
+        return this.http.post<Item>(this.api, {
+            todo,
+            status: 'to'
+        });
+    }
+
 }

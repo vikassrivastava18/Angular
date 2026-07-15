@@ -5,10 +5,11 @@
   <input 
     #newItem
     placeholder="add an item"
-   newItem.value=""
+    newItem.value=""
     class="lg-text-input"
     id="addItemInput" />
-    <button class="btn-primary" newItem.value=''>
+    <button class="btn-primary" 
+      (click)="addTodo(newItem.value)">
       Add Item
     </button>
     <!-- Buttons that show all, still to do, or done items on click -->
