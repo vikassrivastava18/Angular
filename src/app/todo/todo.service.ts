@@ -10,11 +10,9 @@ import { Item } from "./item/item.interface";
 export class TodoService {
     private api = 'http://127.0.0.1:8000/todo/todos';
     private http = inject(HttpClient);
-    readonly todos = signal<Item[]>([]);
-
+    
     getTodos() {
-        this.http.get<Item[]>(this.api).subscribe({
-            next: todos => this.todos.set(todos)
-    })}
+        return this.http.get<Item[]>(this.api);
+    }
 
 }

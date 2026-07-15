@@ -16,33 +16,33 @@
     <div class="btn-wrapper">
       <button
         class="btn btn-menu"
-        [class.active]="filter === 'all'"
-        (click)="filter = 'all'">
+        [class.active]="filter() === 'all'"
+        (click)="filter.set('all')">
         All
       </button>
 
       <button
         class="btn btn-menu"
-        [class.active]="filter === 'active'"
-        (click)="filter = 'active'">
+        [class.active]="filter() === 'active'"
+        (click)="filter.set('active')">
         To Do
       </button>
 
       <button
         class="btn btn-menu"
-        [class.active]="filter === 'done'"
-        (click)="filter = 'done'">
+        [class.active]="filter() === 'done'"
+        (click)="filter.set('done')">
         Done
       </button>
     </div>
 
   <h2>
-  {{todoService.todos().length}}
-  <span> @if (todoService.todos().length === 1) { item } @else { items } </span>
+  {{filteredTodos().length}}
+  <span> @if (filteredTodos().length === 1) { item } @else { items } </span>
 </h2>
 
 <ul>
-  @for (item of todoService.todos(); track item.id) {
+  @for (item of filteredTodos(); track item.id) {
   <li>
     <todo-item [item]="item"></todo-item>
   </li>
