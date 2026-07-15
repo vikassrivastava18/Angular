@@ -20,7 +20,6 @@ export class AuthService {
     isLoggedIn = signal(!!localStorage.getItem('token'));
 
     private http = inject(HttpClient);
-
     private api = 'http://127.0.0.1:8000/auth';
 
     login(data: LoginRequest): Observable<LoginResponse> {

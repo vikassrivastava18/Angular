@@ -22,4 +22,17 @@ export class TodoService {
         });
     }
 
+    updateTodo(description: string, id: number, status: string) {
+        const api = `${this.api}/${id}` 
+        return this.http.put<Item>(api, {
+            id: id,
+            todo: description,
+            status: status            
+        });
+    }
+
+    deleteTodo(id: number) {
+        const api = `${this.api}/${id}`;
+        return this.http.delete<Item>(api);
+    }
 }

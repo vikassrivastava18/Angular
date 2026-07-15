@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, inject } from "@angular/core";
 // import { CommonModule } from "@angular/common";
 import { Item } from "./item.interface";
+import { TodoService } from "../todo.service";
 
 @Component({
   selector: 'todo-item',
@@ -13,13 +14,36 @@ import { Item } from "./item.interface";
 export class ItemComponent {
   editable = false;
 
+  todoService = inject(TodoService)
+
   @Input() item!: Item;
   @Output() remove = new EventEmitter<Item>();
 
-  saveItem(description: string) {
+  finishEditing() {
+    this.editable = false;
+  }
+
+  toggleItemStatus(event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    const status = checked ? 'co' : 'to';
+
+    this.updateItem(this.item.todo, this.item.id, status);
+  }
+
+  updateItem(description: string, id: number, status: string) {
     if (!description) return;
 
-    this.editable = false;
-    this.item.todo = description;
+    this.todoService.updateTodo(description, id, status).subscribe((todo) => {
+      this.item.todo = todo.todo;
+      this.item.status = todo.status;
+      this.finishEditing();
+    });
+  }
+
+  deleteItem(id: number) {
+    this.todoService.deleteTodo(id).subscribe(() => {
+      this.remove.emit(this.item);
+      this.finishEditing();
+    });
   }
 }

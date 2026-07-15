@@ -54,4 +54,8 @@ export class ToDo {
       this.allTodos.update((todos) => [newTodo, ...todos]);
     });
   }
+
+  removeTodo(id: number) {
+    this.allTodos.update((todos) => todos.filter((todo) => todo.id !== id));
+  }
 }
