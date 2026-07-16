@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter, inject, signal } from "@angular/core";
-// import { CommonModule } from "@angular/common";
+import { Component, Input, 
+         Output, EventEmitter, 
+         inject, signal } from "@angular/core";
 import { Item } from "./item.interface";
 import { TodoService } from "../todo.service";
 
@@ -38,18 +39,26 @@ export class ItemComponent {
   updateItem(description: string, id: number, status: string) {
     if (!description) return;
 
-    this.todoService.updateTodo(description, id, status).subscribe((todo) => {
-      this.item.todo = todo.todo;
-      this.item.status = todo.status;
-      this.statusChanged.emit(this.item);
-      this.finishEditing();
+    this.todoService.updateTodo(description, id, status).subscribe({
+      next: (todo) => {
+        this.item.todo = todo.todo;
+        this.item.status = todo.status;
+        this.statusChanged.emit(this.item);
+        this.finishEditing();
+      },
+      error: err => console.log(`Failed to update item: ${err.message}`)
     });
+
   }
 
   deleteItem(id: number) {
-    this.todoService.deleteTodo(id).subscribe(() => {
-      this.remove.emit(this.item);
-      this.finishEditing();
+    this.todoService.deleteTodo(id).subscribe({
+      next: () => {
+        this.remove.emit(this.item);
+        this.finishEditing();
+      },
+      error: err => console.log(`Failed to delete item: ${err.message}`)
+
     });
   }
 }

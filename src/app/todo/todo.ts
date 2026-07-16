@@ -34,10 +34,11 @@ export class ToDo {
     }
   });
 
-  getAllTodos () {
-    this.todoService.getTodos().subscribe((todos) => {
-      this.allTodos.set(todos);
-    });
+  getAllTodos() {
+    this.todoService.getTodos().subscribe({
+      next: todos => this.allTodos.set(todos),
+      error: err => console.log(`Failed to update item: ${err.message}`)
+    })
   }
 
   ngOnInit() {
@@ -49,8 +50,11 @@ export class ToDo {
       return;
     }
 
-    this.todoService.addTodo(todo).subscribe((newTodo) => {
-      this.allTodos.update((todos) => [newTodo, ...todos]);
+    this.todoService.addTodo(todo).subscribe({
+      next: (newTodo) => {
+        this.allTodos.update((todos) => [newTodo, ...todos]);
+      },
+      error: err => console.log(`Failed to add item: ${err.message}`)
     });
   }
 
