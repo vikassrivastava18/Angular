@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { RouterOutlet } from '@angular/router';
 import { Nav } from "./nav/nav";
+import { ToastService } from "./toast.service";
 
 @Component({
   standalone: true,
@@ -11,5 +12,6 @@ import { Nav } from "./nav/nav";
 })
 
 export class App {
-  
+  toastService = inject(ToastService);
+
 }

@@ -1,5 +1,11 @@
 <div class="main">
-
+    <!-- Floating Toast Message Div -->
+    @if (toastService.toast(); as currentToast) {
+    <div class="toast-container" [class]="currentToast.type">
+        <span class="toast-message">{{ currentToast.message }}</span>
+        <button class="toast-close" (click)="toastService.clear()">&times;</button>
+    </div>
+    }
     <app-nav></app-nav>
     <router-outlet></router-outlet>
 </div>

@@ -1,0 +1,33 @@
+/* Fixed container floating at the top right */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 16px 24px;
+  border-radius: 6px;
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+}
+
+/* Background states */
+.success { background-color: #2ecc71; }
+.error { background-color: #e74c3c; }
+.info { background-color: #3498db; }
+
+/* Styling for message and close button */
+.toast-message { font-size: 14px; font-weight: 500; }
+.toast-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.toast-close:hover { opacity: 1; }

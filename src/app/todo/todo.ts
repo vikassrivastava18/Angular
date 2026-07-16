@@ -1,6 +1,7 @@
 import { Component, inject, computed, signal } from '@angular/core';
 import { ItemComponent } from "./item/item";
 import { TodoService } from './todo.service';
+import { ToastService } from '../toast.service';
 import { Item } from './item/item.interface';
 
 
@@ -17,6 +18,7 @@ export class ToDo {
   allTodos = signal<Item[]>([]);
 
   todoService = inject(TodoService)
+  toastService = inject(ToastService);
 
   filteredTodos = computed(() => {
     const todos = this.allTodos();
@@ -37,7 +39,7 @@ export class ToDo {
   getAllTodos() {
     this.todoService.getTodos().subscribe({
       next: todos => this.allTodos.set(todos),
-      error: err => console.log(`Failed to update item: ${err.message}`)
+      error: err => this.toastService.show('Something failed!', 'error')
     })
   }
 
@@ -54,7 +56,8 @@ export class ToDo {
       next: (newTodo) => {
         this.allTodos.update((todos) => [newTodo, ...todos]);
       },
-      error: err => console.log(`Failed to add item: ${err.message}`)
+      error: err => this.toastService.show('Something failed!', 'error')
+
     });
   }
 
