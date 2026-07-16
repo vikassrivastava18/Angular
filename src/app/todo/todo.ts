@@ -39,7 +39,7 @@ export class ToDo {
   getAllTodos() {
     this.todoService.getTodos().subscribe({
       next: todos => this.allTodos.set(todos),
-      error: err => this.toastService.show('Something failed!', 'error')
+      error: err => this.toastService.show('Something failed!:', err.message)
     })
   }
 
@@ -56,7 +56,7 @@ export class ToDo {
       next: (newTodo) => {
         this.allTodos.update((todos) => [newTodo, ...todos]);
       },
-      error: err => this.toastService.show('Something failed!', 'error')
+      error: err => this.toastService.show('Something failed!:', err.message)
 
     });
   }

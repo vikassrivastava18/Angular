@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { ToastService } from '../../toast.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class Login {
 
   auth = inject(AuthService);
   router = inject(Router);
+  toastService = inject(ToastService)
 
   login() {
     this.auth.login({
@@ -26,11 +28,9 @@ export class Login {
       next: () => {
         this.router.navigate(['/todos']);
       },
-
-      error: () => {
-        alert("Invalid credentials");
+      error: (err) => {
+        this.toastService.show(err.message, 'error');
       }
-
     });
 
   }
