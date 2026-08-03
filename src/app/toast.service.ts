@@ -12,7 +12,7 @@ export interface ToastData {
 export class ToastService {
     toast = signal<ToastData | null>(null);
 
-    show(message: string, type: 'success' | 'error' | 'info' = 'info') {
+    show(type: 'success' | 'error' | 'info' = 'info', message: string) {
         this.toast.set({ message, type });
         // Automatically clear the toast after 3 seconds
         setTimeout(() => {

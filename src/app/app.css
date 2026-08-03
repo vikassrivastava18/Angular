@@ -21,7 +21,7 @@
 .info { background-color: #3498db; }
 
 /* Styling for message and close button */
-.toast-message { font-size: 14px; font-weight: 500; }
+.toast-message { font-size: 14px; font-weight: 500;}
 .toast-close {
   background: none;
   border: none;
