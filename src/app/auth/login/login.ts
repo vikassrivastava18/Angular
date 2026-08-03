@@ -29,7 +29,7 @@ export class Login {
         this.router.navigate(['/todos']);
       },
       error: (err) => {
-        this.toastService.show(err.message, 'error');
+        this.toastService.show('error', err.message);
       }
     });
 

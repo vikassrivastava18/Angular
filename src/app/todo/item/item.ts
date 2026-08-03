@@ -3,6 +3,7 @@ import { Component, Input,
          inject, signal } from "@angular/core";
 import { Item } from "./item.interface";
 import { TodoService } from "../todo.service";
+import { ToastService } from "../../toast.service";
 
 @Component({
   selector: 'todo-item',
@@ -16,6 +17,7 @@ export class ItemComponent {
   editable = signal(false);
 
   todoService = inject(TodoService)
+  toastService = inject(ToastService)
 
   @Input() item!: Item;
   @Output() remove = new EventEmitter<Item>();
@@ -46,7 +48,7 @@ export class ItemComponent {
         this.statusChanged.emit(this.item);
         this.finishEditing();
       },
-      error: err => console.log(`Failed to update item: ${err.message}`)
+      error: err => this.toastService.show('error', err.message)
     });
 
   }
@@ -57,8 +59,7 @@ export class ItemComponent {
         this.remove.emit(this.item);
         this.finishEditing();
       },
-      error: err => console.log(`Failed to delete item: ${err.message}`)
-
+      error: err => this.toastService.show('error', err.message)
     });
   }
 }
