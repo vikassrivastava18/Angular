@@ -1,7 +1,5 @@
 <div class="main">
-  
-  <!-- <h2>{{ componentTitle }}</h2> -->
-  
+    
   <label for="addItemInput">What would you like to do today?</label>
   <input 
     #newItem
@@ -25,15 +23,15 @@
 
       <button
         class="btn btn-menu"
-        [class.active]="filter() === 'active'"
-        (click)="filter.set('active')">
+        [class.active]="filter() === 'to'"
+        (click)="filter.set('to')">
         To Do
       </button>
 
       <button
         class="btn btn-menu"
-        [class.active]="filter() === 'done'"
-        (click)="filter.set('done')">
+        [class.active]="filter() === 'co'"
+        (click)="filter.set('co')">
         Done
       </button>
     </div>

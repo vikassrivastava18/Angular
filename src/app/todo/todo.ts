@@ -14,7 +14,7 @@ import { Item } from './item/item.interface';
 
 export class ToDo {
   componentTitle = "My To Do List";
-  filter = signal<"all" | "active" | "done">("all");
+  filter = signal<"all" | "to" | "co">("all");
   allTodos = signal<Item[]>([]);
 
   todoService = inject(TodoService)
@@ -24,16 +24,9 @@ export class ToDo {
     const todos = this.allTodos();
     const currentFilter = this.filter();
 
-    switch (currentFilter) {
-      case 'active':
-        return todos.filter((todo) => todo.status == "to");
+    return todos.filter((todo) => currentFilter == 'all' ? todo : todo.status == currentFilter)
 
-      case 'done':
-        return todos.filter((todo) => todo.status == "co");
 
-      default:
-        return todos;
-    }
   });
 
   getAllTodos() {

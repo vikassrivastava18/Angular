@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { Item } from "./item/item.interface";
+import { apiBaseUrl } from "../app.config";
+import { Item, Topic } from "./item/item.interface";
 
 
 @Injectable({
@@ -8,22 +9,23 @@ import { Item } from "./item/item.interface";
 })
 
 export class TodoService {
-    private api = 'http://127.0.0.1:8000/todo/todos';
+    private todoApi = `${apiBaseUrl}/todo/todos`;
+    private topicApi = `${apiBaseUrl}/todo/topics`
     private http = inject(HttpClient);
     
     getTodos() {
-        return this.http.get<Item[]>(this.api);
+        return this.http.get<Item[]>(this.todoApi);
     }
 
     addTodo(todo: string) {
-        return this.http.post<Item>(this.api, {
+        return this.http.post<Item>(this.todoApi, {
             todo,
             status: 'to'
         });
     }
 
     updateTodo(description: string, id: number, status: string) {
-        const api = `${this.api}/${id}` 
+        const api = `${this.todoApi}/${id}` 
         return this.http.put<Item>(api, {
             id: id,
             todo: description,
@@ -32,7 +34,11 @@ export class TodoService {
     }
 
     deleteTodo(id: number) {
-        const api = `${this.api}/${id}`;
+        const api = `${this.todoApi}/${id}`;
         return this.http.delete<Item>(api);
+    }
+
+    getTopics() {
+        return this.http.get<Topic[]>(this.topicApi);
     }
 }

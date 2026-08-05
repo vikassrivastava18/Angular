@@ -3,3 +3,8 @@ export interface Item {
     todo: string;
     status: string;
 }
+
+export interface Topic {
+    topic: string;
+    detail: string
+}
