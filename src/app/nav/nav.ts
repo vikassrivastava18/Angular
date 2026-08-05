@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './nav.html',
   styleUrl: './nav.css',
 })
@@ -15,7 +15,6 @@ export class Nav {
 
   logout(event: Event) {
     event.preventDefault();
-
     this.auth.logout();
     this.router.navigate(['/login']);
   }

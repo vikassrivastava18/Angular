@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { Login } from './auth/login/login';
 import { ToDo } from './todo/todo';
 import { authGuard } from './auth/auth-guard';
+import { List } from './todo/list/list';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,11 @@ export const routes: Routes = [
   {
     path: 'todos',
     component: ToDo,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'topics',
+    component: List,
     canActivate: [authGuard]
   },
 
