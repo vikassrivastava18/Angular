@@ -32,8 +32,8 @@ body {
 }
 
 .btn-primary {
-  color: white;
-  background-color: black;
+  color: rgb(47, 43, 43);
+  background-color: navajowhite;
   width: 100%;
   padding: 0.75rem;
   font-size: 1.3rem;
@@ -43,6 +43,7 @@ body {
 
 .btn-primary:hover {
   background-color: #444242;
+  color: #fff;
 }
 
 .btn-primary:focus {

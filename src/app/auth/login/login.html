@@ -1,16 +1,19 @@
 
 <div class="main p-4">
     <h2>Login</h2>
-
+    <label for="username" class="form-label mt-4">Username</label>
     <input
         [(ngModel)]="username"
         placeholder="Username"
+        id="username"
         class="lg-text-input form-control">
     <br>
+    <label for="password" class="form-label">Password</label>
     <input
         type="password"
         [(ngModel)]="password"
         placeholder="Password"
+        id="password"
         class="lg-text-input form-control">
     <br>
     <button
