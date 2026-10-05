@@ -25,5 +25,19 @@ export class TopicComponent {
       error: err => this.toastService.show('error', err.message)
     })
   }
-}
 
+  addTopicTodo(topic: Topic, description: string, input: HTMLInputElement) {
+    const todo = description.trim();
+    if (!todo) {
+      return;
+    }
+
+    this.todoService.addTodo(`${topic.topic}: ${todo}`).subscribe({
+      next: () => {
+        input.value = '';
+        this.toastService.show('success', `Added todo to "${topic.topic}"`);
+      },
+      error: err => this.toastService.show('error', err.message)
+    })
+  }
+}

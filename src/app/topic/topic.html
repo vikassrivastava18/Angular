@@ -1,11 +1,26 @@
-<div class="d-flex flex-nowrap justify-content-between mt-4">
+<div class="topicList mt-4">
     @for (topic of topics(); track topic.topic) {
-    <div class="card m-4 topicItem">
+    <div class="card topicItem">
         <h5 class="card-header">{{ topic.topic }}</h5>
         <div class="card-body">
             <p class="card-text">{{ topic.detail }}</p>
+            <label class="form-label" [for]="'todo-' + topic.topic">New todo</label>
+            <div class="input-group">
+                <input
+                    #todoInput
+                    class="form-control"
+                    [id]="'todo-' + topic.topic"
+                    type="text"
+                    placeholder="What needs doing?"
+                    (keyup.enter)="addTopicTodo(topic, todoInput.value, todoInput)" />
+                <button
+                    class="btn btn-primary"
+                    type="button"
+                    (click)="addTopicTodo(topic, todoInput.value, todoInput)">
+                    Add todo
+                </button>
+            </div>
         </div>
     </div>
     }
-
 </div>
