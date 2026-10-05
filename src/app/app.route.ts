@@ -2,8 +2,8 @@ import { Routes } from '@angular/router';
 
 import { Login } from './auth/login/login';
 import { ToDo } from './todo/todo';
+import { TopicComponent } from './topic/topic';
 import { authGuard } from './auth/auth-guard';
-import { List } from './todo/list/list';
 
 export const routes: Routes = [
   {
@@ -24,7 +24,7 @@ export const routes: Routes = [
   },
   {
     path: 'topics',
-    component: List,
+    component: TopicComponent,
     canActivate: [authGuard]
   },
 

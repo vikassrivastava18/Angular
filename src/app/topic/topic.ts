@@ -1,15 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
-import { TodoService } from '../todo.service';
-import { ToastService } from '../../toast.service';
-import { Topic } from '../item/item.interface';
+import { TodoService } from '../todo/todo.service';
+import { ToastService } from '../toast.service';
+import { Topic } from '../todo/item/item.interface';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-topic',
   imports: [],
-  templateUrl: './list.html',
-  styleUrl: './list.css',
+  templateUrl: './topic.html',
+  styleUrl: './topic.css',
 })
-export class List {
+export class TopicComponent {
   topics = signal<Topic[]>([])
 
   todoService = inject(TodoService)
@@ -26,3 +26,4 @@ export class List {
     })
   }
 }
+
