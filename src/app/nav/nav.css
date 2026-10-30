@@ -1,6 +1,9 @@
 #homeLink {
     font-size: xx-large;
 }
+#agendaLink, #logoutLink {
+    color: gray;
+}
 .navbar-brand {
     color: crimson;
 }

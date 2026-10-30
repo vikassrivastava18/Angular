@@ -1,9 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-1">
     <div class="d-flex justify-content-between w-100">
         <div class="px-4">
             <a class="navbar-brand ms-2 mt-4 me-4" id="homeLink" routerLink="/">KARMA</a>
             @if (auth.isLoggedIn()) {
-            <a class="navbar-brand ms-4 mt-2" 
+            <a class="navbar-brand ms-4 mt-2"
+                id="agendaLink" 
                 routerLink="/topics">
                 Agendas
             </a>
@@ -18,8 +19,11 @@
             <ul class="navbar-nav">
                 @if (auth.isLoggedIn()) {
                 <li class="nav-item ms-2">
-                    <a class="nav-link fs-4" href="#" id="logoutLink" style="color: red;" (click)="logout($event)">
-                        <button class="btn btn-danger">Logout</button>
+                    <a class="nav-link fs-4" href="#" 
+                    style="color: red;" 
+                    (click)="logout($event)">
+                        <button class="btn btn-danger"
+                        id="logoutLink">Logout</button>
                     </a>
                 </li>
                 }
