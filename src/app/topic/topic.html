@@ -4,7 +4,7 @@
         <h5 class="card-header">{{ topic.topic }}</h5>
         <div class="card-body">
             <p class="card-text">{{ topic.detail }}</p>
-            <label class="form-label" [for]="'todo-' + topic.topic">New todo</label>
+            <label class="form-label" [for]="'todo-' + topic.topic"><b>New todo</b></label>
             <div class="input-group">
                 <input
                     #todoInput
@@ -14,7 +14,7 @@
                     placeholder="What needs doing?"
                     (keyup.enter)="addTopicTodo(topic, todoInput.value, todoInput)" />
                 <button
-                    class="btn btn-primary"
+                    class="btn btn-primary p-2"
                     type="button"
                     (click)="addTopicTodo(topic, todoInput.value, todoInput)">
                     Add todo

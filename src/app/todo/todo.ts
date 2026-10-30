@@ -25,8 +25,6 @@ export class ToDo {
     const currentFilter = this.filter();
 
     return todos.filter((todo) => currentFilter == 'all' ? todo : todo.status == currentFilter)
-
-
   });
 
   getAllTodos() {

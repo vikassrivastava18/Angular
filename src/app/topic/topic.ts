@@ -32,7 +32,7 @@ export class TopicComponent {
       return;
     }
 
-    this.todoService.addTodo(`${topic.topic}: ${todo}`).subscribe({
+    this.todoService.addTodo(`${topic.topic}: ${todo}`, topic.id).subscribe({
       next: () => {
         input.value = '';
         this.toastService.show('success', `Added todo to "${topic.topic}"`);

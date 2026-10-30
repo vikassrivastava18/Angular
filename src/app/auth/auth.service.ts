@@ -28,7 +28,6 @@ export class AuthService {
             data,
         ).pipe(
             tap(response => {
-                console.log(response);   // Check this
                 localStorage.setItem('token', response.token);
                 this.isLoggedIn.set(true)
             })

@@ -17,11 +17,20 @@ export class TodoService {
         return this.http.get<Item[]>(this.todoApi);
     }
 
-    addTodo(todo: string) {
-        return this.http.post<Item>(this.todoApi, {
-            todo,
+    addTodo(todo: string, topic: number | null = null) {
+        if (!topic) {
+            return this.http.post<Item>(this.todoApi, {
+            todo: todo,
             status: 'to'
         });
+        }
+        else {
+            return this.http.post<Item>(this.todoApi, {
+            todo: todo,
+            status: 'to',
+            topic: topic
+        });
+        }
     }
 
     updateTodo(description: string, id: number, status: string) {

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { ToastService } from '../../toast.service';
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -11,6 +12,7 @@ import { ToastService } from '../../toast.service';
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
+
 
 export class Login {
   username = '';
@@ -32,7 +34,6 @@ export class Login {
         this.toastService.show('error', err.message);
       }
     });
-
   }
 
 }

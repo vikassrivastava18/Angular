@@ -5,6 +5,7 @@ export interface Item {
 }
 
 export interface Topic {
+    id: number
     topic: string;
     detail: string
 }
